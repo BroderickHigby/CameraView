@@ -71,143 +71,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "412106C3-301D-4E60-8A39-18BA8C968276"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "Yes"
-            filePath = "CameraView/RecordSwingView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "unknown"
-            landmarkType = "0">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.Sound">
-                  <ActionContent
-                     soundName = "Purr">
-                  </ActionContent>
-               </BreakpointActionProxy>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "po countdownFinished">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
-            <Locations>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - 96e60e1e5ee4d50"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "property wrapper backing initializer of CameraView.RecordingState.countdownFinished : Swift.Bool"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - ff625b5074c62382"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CameraView.RecordingState.countdownFinished.getter : Swift.Bool"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "116">
-               </Location>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - cdf926c83f2b7b8e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CameraView.RecordingState.countdownFinished.setter : Swift.Bool"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "192">
-               </Location>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - 632db16354667dbf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CameraView.RecordingState.countdownFinished.modify : Swift.Bool"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - 2feec5a87fd22385"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CameraView.RecordingState.countdownFinished.modify : Swift.Bool with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - 31dbdf434313aee5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CameraView.RecordingState.$countdownFinished.getter : Combine.Published&lt;Swift.Bool&gt;.Publisher"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "140">
-               </Location>
-               <Location
-                  uuid = "412106C3-301D-4E60-8A39-18BA8C968276 - 7ce4b7f7b11e1db"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CameraView.RecordingState.init() -&gt; CameraView.RecordingState"
-                  moduleName = "CameraView"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "204">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BA39B06B-A243-4B4D-A7C6-EB77D7EBF961"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -215,10 +78,122 @@
             filePath = "CameraView/RecordSwingView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F6C8B1D-01FA-4CF8-BD75-20276CD8F670"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CameraView/RecordSwingEventHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0F6C8B1D-01FA-4CF8-BD75-20276CD8F670 - 9a8c7859c3f978b9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in CameraView.EventOne.body.getter : some"
+                  moduleName = "CameraView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingEventHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "0F6C8B1D-01FA-4CF8-BD75-20276CD8F670 - 6638b0ad988dbcad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in CameraView.EventOne.body.getter : some"
+                  moduleName = "CameraView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingEventHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7B36A699-D665-4DBA-B2C6-E303EF4F874F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CameraView/RecordSwingEventHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7B36A699-D665-4DBA-B2C6-E303EF4F874F - 1a64a251c5715fd1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in CameraView.EventTwo.body.getter : some"
+                  moduleName = "CameraView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingEventHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "380">
+               </Location>
+               <Location
+                  uuid = "7B36A699-D665-4DBA-B2C6-E303EF4F874F - 5f79e6d7ed8583c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #2 () -&gt; () in CameraView.EventTwo.body.getter : some"
+                  moduleName = "CameraView"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/broderickhigby/Downloads/CameraView/CameraView/RecordSwingEventHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4DAEA324-DE37-473C-9DC7-B6FEF95CDA09"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CameraView/RecordSwingEventHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

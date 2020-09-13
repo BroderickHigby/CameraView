@@ -22,19 +22,25 @@ import SwiftUI
 //    }
 //}
 
+
 struct EventOne: View {
+    @ObservedObject var recordingState: RecordingState
+    
     var body: some View {
-        VStack {
-            TextDisplayOverCameraView(text: RecordingTextState.bodyInScreenText.rawValue)
-            
-        }
+        ZStack {
+                TextDisplayOverCameraView(text: RecordingTextState.bodyInScreenText.rawValue)
+        }.onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.recordingState.state = .countdownTimer
+            }
+        })
     }
 }
 
 
 struct EventTwo: View {
-    @Binding var showTimerText: Bool
     @ObservedObject var recordingState: RecordingState
+    @State private var showTimerText = false
 
     var body: some View {
         ZStack {
@@ -44,8 +50,12 @@ struct EventTwo: View {
             } else {
                 TextDisplayOverCameraView(text: RecordingTextState.timerInstructions.rawValue)
             }
-            LinearGradient(gradient: Gradient(colors: [.gray]), startPoint: .top, endPoint: .bottom)
-        }
+//            LinearGradient(gradient: Gradient(colors: [.gray]), startPoint: .top, endPoint: .bottom)
+        }.onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.showTimerText = true
+            }
+        })
     }
 }
 
@@ -55,10 +65,10 @@ struct CountdownTimerView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        Text("\(timeRemaining)")
-            .foregroundColor(.black)
-            .font(.largeTitle)
-            .multilineTextAlignment(.center)
+        TextDisplayOverCameraView(text: "\(timeRemaining)")
+//            .foregroundColor(.white)
+//            .font(.largeTitle)
+//            .multilineTextAlignment(.center)
             .onReceive(timer) { _ in
                 if self.timeRemaining > 0 {
                     self.timeRemaining -= 1
@@ -78,16 +88,16 @@ struct TextDisplayOverCameraView: View {
     var body: some View {
         Text(text ?? "")
         .foregroundColor(.white)
-            .font(.title)
+        .font(.system(size: 46.0))
         .multilineTextAlignment(.center)
+        .padding()
     }
 }
 
 struct EventThree: View {
     var body: some View {
         VStack {
-            Text("Event 3")
-            Text("Recording Golf Swing")
+            TextDisplayOverCameraView(text: RecordingTextState.swing.rawValue)
         }
     }
 }
