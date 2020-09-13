@@ -16,7 +16,7 @@
 		03ADBF97250D2E7000D6FA93 /* CameraViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBF96250D2E7000D6FA93 /* CameraViewTests.swift */; };
 		03ADBFA2250D2E7000D6FA93 /* CameraViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFA1250D2E7000D6FA93 /* CameraViewUITests.swift */; };
 		03ADBFB0250D32E900D6FA93 /* RecordSwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFAF250D32E900D6FA93 /* RecordSwingView.swift */; };
-		03ADBFB2250D4A0000D6FA93 /* LiveAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB1250D4A0000D6FA93 /* LiveAnalysisView.swift */; };
+		03ADBFB2250D4A0000D6FA93 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB1250D4A0000D6FA93 /* LiveCameraView.swift */; };
 		03ADBFB4250D4A2900D6FA93 /* VideoRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB3250D4A2900D6FA93 /* VideoRecordingView.swift */; };
 		03ADBFB6250D52A000D6FA93 /* PersonFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB5250D52A000D6FA93 /* PersonFinderView.swift */; };
 		03ADBFB8250D572400D6FA93 /* RecordSwingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB7250D572400D6FA93 /* RecordSwingEventHandler.swift */; };
@@ -55,7 +55,7 @@
 		03ADBFA1250D2E7000D6FA93 /* CameraViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewUITests.swift; sourceTree = "<group>"; };
 		03ADBFA3250D2E7000D6FA93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03ADBFAF250D32E900D6FA93 /* RecordSwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSwingView.swift; sourceTree = "<group>"; };
-		03ADBFB1250D4A0000D6FA93 /* LiveAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveAnalysisView.swift; sourceTree = "<group>"; };
+		03ADBFB1250D4A0000D6FA93 /* LiveCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraView.swift; sourceTree = "<group>"; };
 		03ADBFB3250D4A2900D6FA93 /* VideoRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingView.swift; sourceTree = "<group>"; };
 		03ADBFB5250D52A000D6FA93 /* PersonFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFinderView.swift; sourceTree = "<group>"; };
 		03ADBFB7250D572400D6FA93 /* RecordSwingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSwingEventHandler.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 				03ADBF81250D2E6F00D6FA93 /* SceneDelegate.swift */,
 				03ADBFAF250D32E900D6FA93 /* RecordSwingView.swift */,
 				03ADBFB7250D572400D6FA93 /* RecordSwingEventHandler.swift */,
-				03ADBFB1250D4A0000D6FA93 /* LiveAnalysisView.swift */,
+				03ADBFB1250D4A0000D6FA93 /* LiveCameraView.swift */,
 				03ADBFB5250D52A000D6FA93 /* PersonFinderView.swift */,
 				03ADBF83250D2E6F00D6FA93 /* RecordingView.swift */,
 				03ADBFB3250D4A2900D6FA93 /* VideoRecordingView.swift */,
@@ -282,7 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03ADBFB2250D4A0000D6FA93 /* LiveAnalysisView.swift in Sources */,
+				03ADBFB2250D4A0000D6FA93 /* LiveCameraView.swift in Sources */,
 				03ADBFB6250D52A000D6FA93 /* PersonFinderView.swift in Sources */,
 				03ADBFB0250D32E900D6FA93 /* RecordSwingView.swift in Sources */,
 				03ADBF80250D2E6F00D6FA93 /* AppDelegate.swift in Sources */,

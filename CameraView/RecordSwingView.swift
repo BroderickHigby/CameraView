@@ -42,8 +42,8 @@ struct RecordSwingView: View {
     
     var body: some View {
         ZStack {
-            VideoRecordingView(timeLeft: $countdownTimer, onComplete: $golferInView, recording: $recording)
-                
+//            VideoRecordingView(timeLeft: $countdownTimer, onComplete: $golferInView, recording: $recording)
+            LivePreview()
                 .padding()
             //            Button(action: {
             //                self.showTimerText.toggle()

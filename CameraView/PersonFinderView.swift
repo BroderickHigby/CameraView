@@ -22,3 +22,29 @@ struct PersonFinderView_Previews: PreviewProvider {
         }
     }
 }
+
+
+class BarCodeViewModel: ObservableObject {
+    @Published var cardNumber: String = ""
+}
+
+struct BarcodeView: View {
+    @ObservedObject var vm = BarCodeViewModel()
+    
+    @State var isShowingCameraView = false
+    
+    var body: some View {
+        VStack {
+            CameraView(model: vm)
+                .edgesIgnoringSafeArea(.all)
+            Text(vm.cardNumber)
+        }
+        
+    }
+}
+
+struct BarcodeView_Previews: PreviewProvider {
+    static var previews: some View {
+        BarcodeView()
+    }
+}
