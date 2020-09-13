@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		03ADBF80250D2E6F00D6FA93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBF7F250D2E6F00D6FA93 /* AppDelegate.swift */; };
 		03ADBF82250D2E6F00D6FA93 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBF81250D2E6F00D6FA93 /* SceneDelegate.swift */; };
-		03ADBF84250D2E6F00D6FA93 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBF83250D2E6F00D6FA93 /* RecordingView.swift */; };
 		03ADBF86250D2E7000D6FA93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03ADBF85250D2E7000D6FA93 /* Assets.xcassets */; };
 		03ADBF89250D2E7000D6FA93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03ADBF88250D2E7000D6FA93 /* Preview Assets.xcassets */; };
 		03ADBF8C250D2E7000D6FA93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03ADBF8A250D2E7000D6FA93 /* LaunchScreen.storyboard */; };
@@ -18,7 +17,6 @@
 		03ADBFB0250D32E900D6FA93 /* RecordSwingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFAF250D32E900D6FA93 /* RecordSwingView.swift */; };
 		03ADBFB2250D4A0000D6FA93 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB1250D4A0000D6FA93 /* LiveCameraView.swift */; };
 		03ADBFB4250D4A2900D6FA93 /* VideoRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB3250D4A2900D6FA93 /* VideoRecordingView.swift */; };
-		03ADBFB6250D52A000D6FA93 /* PersonFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB5250D52A000D6FA93 /* PersonFinderView.swift */; };
 		03ADBFB8250D572400D6FA93 /* RecordSwingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ADBFB7250D572400D6FA93 /* RecordSwingEventHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +41,6 @@
 		03ADBF7C250D2E6F00D6FA93 /* CameraView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03ADBF7F250D2E6F00D6FA93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03ADBF81250D2E6F00D6FA93 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03ADBF83250D2E6F00D6FA93 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		03ADBF85250D2E7000D6FA93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03ADBF88250D2E7000D6FA93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03ADBF8B250D2E7000D6FA93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,7 +54,6 @@
 		03ADBFAF250D32E900D6FA93 /* RecordSwingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSwingView.swift; sourceTree = "<group>"; };
 		03ADBFB1250D4A0000D6FA93 /* LiveCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraView.swift; sourceTree = "<group>"; };
 		03ADBFB3250D4A2900D6FA93 /* VideoRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecordingView.swift; sourceTree = "<group>"; };
-		03ADBFB5250D52A000D6FA93 /* PersonFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonFinderView.swift; sourceTree = "<group>"; };
 		03ADBFB7250D572400D6FA93 /* RecordSwingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSwingEventHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,15 +105,13 @@
 		03ADBF7E250D2E6F00D6FA93 /* CameraView */ = {
 			isa = PBXGroup;
 			children = (
-				03ADBF7F250D2E6F00D6FA93 /* AppDelegate.swift */,
-				03ADBF81250D2E6F00D6FA93 /* SceneDelegate.swift */,
 				03ADBFAF250D32E900D6FA93 /* RecordSwingView.swift */,
 				03ADBFB7250D572400D6FA93 /* RecordSwingEventHandler.swift */,
 				03ADBFB1250D4A0000D6FA93 /* LiveCameraView.swift */,
-				03ADBFB5250D52A000D6FA93 /* PersonFinderView.swift */,
-				03ADBF83250D2E6F00D6FA93 /* RecordingView.swift */,
 				03ADBFB3250D4A2900D6FA93 /* VideoRecordingView.swift */,
 				03ADBF85250D2E7000D6FA93 /* Assets.xcassets */,
+				03ADBF7F250D2E6F00D6FA93 /* AppDelegate.swift */,
+				03ADBF81250D2E6F00D6FA93 /* SceneDelegate.swift */,
 				03ADBF8A250D2E7000D6FA93 /* LaunchScreen.storyboard */,
 				03ADBF8D250D2E7000D6FA93 /* Info.plist */,
 				03ADBF87250D2E7000D6FA93 /* Preview Content */,
@@ -283,12 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				03ADBFB2250D4A0000D6FA93 /* LiveCameraView.swift in Sources */,
-				03ADBFB6250D52A000D6FA93 /* PersonFinderView.swift in Sources */,
 				03ADBFB0250D32E900D6FA93 /* RecordSwingView.swift in Sources */,
 				03ADBF80250D2E6F00D6FA93 /* AppDelegate.swift in Sources */,
 				03ADBFB4250D4A2900D6FA93 /* VideoRecordingView.swift in Sources */,
 				03ADBF82250D2E6F00D6FA93 /* SceneDelegate.swift in Sources */,
-				03ADBF84250D2E6F00D6FA93 /* RecordingView.swift in Sources */,
 				03ADBFB8250D572400D6FA93 /* RecordSwingEventHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

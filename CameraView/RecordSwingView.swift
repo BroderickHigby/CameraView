@@ -41,39 +41,11 @@ struct RecordSwingView: View {
     
     var body: some View {
         ZStack {
-//            VideoRecordingView(timeLeft: $countdownTimer, onComplete: $golferInView, recording: $recording)
-            PersonFinderView()
+            CameraView(recordingState: recordingState)
                 .padding()
-            //            Button(action: {
-            //                self.showTimerText.toggle()
-            //            }) {
-            //                Text("Toggle Timer")
-            //            }
-            //            Spacer()
-            //            Circle()
-            //                .stroke(Color.pink, lineWidth: 300)
-            //                .frame(width: 300, height: 300)
         }.overlay(
             VStack {
                 overlayEvents()
-//                HStack {
-//                    Button(action: {
-//                        if self.eventView == RecordingEventState.countdownTimer {
-//                            self.eventView = RecordingEventState.recording
-//                        } else if self.eventView == RecordingEventState.findingPerson {
-//                            self.eventView = RecordingEventState.countdownTimer
-//                        }
-//                    }) {
-//                        Text("Events")
-//                    }
-//                    .padding()
-//                    Spacer()
-//                    Button(action: {
-//                        self.showTimerText.toggle()
-//                    }) {
-//                        Text("Timer")
-//                    }
-//                }
             }
             
         )

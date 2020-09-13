@@ -7,20 +7,31 @@
 //
 
 import SwiftUI
+import AVKit
 
-//struct RecordSwingEventHandler: View {
-//    @State private var swingText = "This is the recording Swing text"
-//    @State private var showTimer = false
-//    var body: some View {
-////        EventTwo(showTimerText: $showTimer)
-//    }
-//}
-//
-//struct RecordSwingEventHandler_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RecordSwingEventHandler()
-//    }
-//}
+struct CameraView: View {
+    @ObservedObject var recordingState: RecordingState
+    @ObservedObject var viewModel = CameraViewModel()
+    
+    var body: some View {
+        Group {
+            if viewModel.personInView {
+                VideoRecordingView(model: viewModel)
+            } else {
+                LivePreview(model: viewModel)
+                
+            }
+        
+        }
+            .edgesIgnoringSafeArea(.all)
+            .onReceive(viewModel.$personInView, perform: { detected in
+                if detected {
+                    self.viewModel.personInView = true
+                }
+            })
+    }// can call viewModel.personInView to check if the person is in view
+}
+
 
 
 struct EventOne: View {
@@ -103,4 +114,12 @@ struct EventThree: View {
 }
 
 
+
+
+struct PersonFinderView_Previews: PreviewProvider {
+    @State private var detection = true
+    static var previews: some View {
+        CameraView(recordingState: RecordingState())
+    }
+}
 

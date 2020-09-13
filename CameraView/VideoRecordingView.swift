@@ -13,24 +13,24 @@ import AVKit
 
 
 struct VideoRecordingView: UIViewRepresentable {
+    let model: CameraViewModel
     
-    @Binding var timeLeft: Int
-    @Binding var onComplete: Bool
-    @Binding var recording: Bool
     func makeUIView(context: UIViewRepresentableContext<VideoRecordingView>) -> VideoPreviewView {
         let recordingView = VideoPreviewView()
+        recordingView.bridgeModel = self.model
+        
         recordingView.onComplete = {
-            self.onComplete = true
+            self.model.onComplete = true
         }
         
-        recordingView.onRecord = { timeLeft, totalSeconds in
-            self.timeLeft = timeLeft
-            self.recording = true
+        recordingView.onRecord = { timeLeft, currentRecordingTime in
+            self.model.timeLeft = timeLeft
+            self.model.recording = true
         }
         
         recordingView.onReset = {
-            self.recording = false
-            self.timeLeft = 5
+            self.model.recording = false
+            self.model.timeLeft = 30
         }
         return recordingView
     }
@@ -40,55 +40,26 @@ struct VideoRecordingView: UIViewRepresentable {
     }
 }
 
-extension VideoPreviewView: AVCaptureFileOutputRecordingDelegate {
-    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
-        print(outputFileURL.absoluteString)
-    }
-}
+
 
 class VideoPreviewView: UIView {
+    var bridgeModel: CameraViewModel?
     private var captureSession: AVCaptureSession?
     private var countdownTimer: Timer?
     let videoFileOutput = AVCaptureMovieFileOutput()
     var recordingDelegate:AVCaptureFileOutputRecordingDelegate!
     
     var recorded = 0
-    var secondsToReachGoal = 5
+    var recordingTimeLimit = 30
     
-    var onRecord: ((Int, Int)->())?
+    var onRecord: ((Int, Int)->())? // countdown & duration
     var onReset: (() -> ())?
     var onComplete: (() -> ())?
     
     init() {
         super.init(frame: .zero)
-        
-        var allowedAccess = false
-        let blocker = DispatchGroup()
-        blocker.enter()
-        AVCaptureDevice.requestAccess(for: .video) { flag in
-            allowedAccess = flag
-            blocker.leave()
-        }
-        blocker.wait()
-        
-        if !allowedAccess {
-            print("!!! NO ACCESS TO CAMERA")
-            return
-        }
-        
-        // setup session
-        let session = AVCaptureSession()
-        session.beginConfiguration()
-        
-        let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
-                                                  for: .video, position: .front)
-        guard videoDevice != nil, let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice!), session.canAddInput(videoDeviceInput) else {
-            print("!!! NO CAMERA DETECTED")
-            return
-        }
-        session.addInput(videoDeviceInput)
-        session.commitConfiguration()
-        self.captureSession = session
+        requestCameraPermissions()
+        setupLiveCamera()
     }
     
     override class var layerClass: AnyClass {
@@ -103,9 +74,46 @@ class VideoPreviewView: UIView {
         return layer as! AVCaptureVideoPreviewLayer
     }
     
+    /// Requests camera access if not granted already
+    func requestCameraPermissions() {
+        var allowedAccess = false
+        let blocker = DispatchGroup()
+        blocker.enter()
+        AVCaptureDevice.requestAccess(for: .video) { flag in
+            allowedAccess = flag
+            blocker.leave()
+        }
+        blocker.wait()
+        
+        if allowedAccess == false {
+            print("No camera Access") // TODO: Create User notification
+        }
+    }
+    
+    func setupLiveCamera() {
+         // setup session
+         let session = AVCaptureSession()
+         session.beginConfiguration()
+         guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
+                                                         for: .video, position: .front) else {
+                                                             print("Built in Camera is not active") // TODO: Add Notification to user
+                                                             return
+         }
+         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice), session.canAddInput(videoDeviceInput) else {
+             print("No Camera Detected")
+             return
+         }
+         
+         session.addInput(videoDeviceInput)
+         session.commitConfiguration()
+         self.captureSession = session
+     }
+    
+    //NOTE: The only difference between this and LiveCameraView are startTimers() & startRecording() are called here
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         recordingDelegate = self
+        
         startTimers()
         
         if let _ = self.superview {
@@ -117,14 +125,19 @@ class VideoPreviewView: UIView {
             self.captureSession?.stopRunning()
         }
     }
+}
+extension VideoPreviewView: AVCaptureFileOutputRecordingDelegate {
+    func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
+        print(outputFileURL.absoluteString)
+    }
     
-    private func onTimerFires(){
-        print("🟢 RECORDING \(videoFileOutput.isRecording)")
-        secondsToReachGoal -= 1
+    private func onTimerFires() {
+        print("Start Recording: \(videoFileOutput.isRecording)")
+        recordingTimeLimit -= 1
         recorded += 1
-        onRecord?(secondsToReachGoal, recorded)
+        onRecord?(recordingTimeLimit, recorded)
         
-        if(secondsToReachGoal == 0){
+        if(recordingTimeLimit == 0){
             stopRecording()
             countdownTimer?.invalidate()
             countdownTimer = nil
@@ -145,16 +158,24 @@ class VideoPreviewView: UIView {
         captureSession?.addOutput(videoFileOutput)
         
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let filePath = documentsURL.appendingPathComponent("tempPZDC")
+        let filePath = documentsURL.appendingPathComponent("temporaryVideoFile")
         
-        videoFileOutput.startRecording(to: filePath, recordingDelegate: recordingDelegate)
+        videoFileOutput.startRecording(to: filePath,
+                                       recordingDelegate: recordingDelegate)
     }
     
     func stopRecording(){
         videoFileOutput.stopRecording()
-        print("🔴 RECORDING \(videoFileOutput.isRecording)")
+        print("Stop Recording: \(videoFileOutput.isRecording)")
     }
+
+    
+    
+    
+    
 }
+
+
 
 
 //struct VideoPreviewView_Previews: PreviewProvider {

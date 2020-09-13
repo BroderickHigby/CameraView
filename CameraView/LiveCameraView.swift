@@ -11,19 +11,26 @@ import Vision
 import AVKit
 
 
-class LiveCameraViewModel: ObservableObject {
+typealias ImageBufferHandler = ((_ imageBuffer: CMSampleBuffer) -> ())
+
+class CameraViewModel: ObservableObject {
     enum CaptureType {
         case recordMovie, videoStreamForProcessing
     }
     
     @Published var personInView: Bool = false
     @Published var captureSessionType: CaptureType = .videoStreamForProcessing
+    
+    // For Video Recording
+    @Published var recording: Bool = false
+    @Published var onComplete: Bool = false
+    @Published var timeLeft: Int = 30
 }
 
 
 struct LivePreview: UIViewRepresentable {
-    let model: LiveCameraViewModel
-    let peronInView: Bool = false
+    let model: CameraViewModel
+    var peronInView: Bool = false
     
     func makeUIView(context: UIViewRepresentableContext<LivePreview>) -> LiveCameraView  {
         let liveView = LiveCameraView()
@@ -35,22 +42,27 @@ struct LivePreview: UIViewRepresentable {
     }
 }
 
-typealias ImageBufferHandler = ((_ imageBuffer: CMSampleBuffer) -> ())
 
 // TODO: Have sample output buffer display
 // TODO: Setup predict function in delegate
 /// Starts Camera Preview and looks for person in view
+/// Camera Streaming View
 /// This Camera Buffer is good for capturing frames using SwiftUI
-class LiveCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
-    var bridgeModel: LiveCameraViewModel?
+class LiveCameraView: UIView {
+    var bridgeModel: CameraViewModel?
     private var captureSession: AVCaptureSession?
     private var videoConnection: AVCaptureConnection!
+    var videoDataDelegate: AVCaptureVideoDataOutputSampleBufferDelegate!
     var imageBufferHandler: ImageBufferHandler?
+    
+    
+    
     
     init() {
         super.init(frame: .zero)
         requestCameraPermissions()
         setupLiveCamera()
+        setupVideoDataOutput()
     }
     
     required init?(coder: NSCoder) {
@@ -101,7 +113,31 @@ class LiveCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         session.addInput(videoDeviceInput)
         session.commitConfiguration()
         self.captureSession = session
+    }
+    
+    
+    // Starts the preview
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        videoDataDelegate = self
         
+        if let _ = self.superview {
+            self.videoPreviewLayer.session = self.captureSession
+            self.videoPreviewLayer.videoGravity = .resizeAspectFill // Change depending on requirements
+            self.captureSession?.startRunning()
+        }
+        else {
+            self.captureSession?.startRunning()
+        }
+    }
+    
+
+    
+}
+
+extension LiveCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    func setupVideoDataOutput() {
         // setup video output
         let videoDataOutput = AVCaptureVideoDataOutput()
         videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey : NSNumber(value: kCVPixelFormatType_32BGRA)] as [String : Any]
@@ -119,20 +155,6 @@ class LiveCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
         videoConnection = videoDataOutput.connection(with: .video)
     }
     
-    // Starts the preview
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-//        recordingDelegate = self
-        
-        if let _ = self.superview {
-            self.videoPreviewLayer.session = self.captureSession
-            self.videoPreviewLayer.videoGravity = .resizeAspectFill // Change depending on requirements
-            self.captureSession?.startRunning()
-        }
-        else {
-            self.captureSession?.startRunning()
-        }
-    }
     // TODO: Stop Buffer once person is found
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         if connection.videoOrientation != .portrait {
@@ -154,7 +176,7 @@ class LiveCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
 
 struct LivePreview_Previews: PreviewProvider {
     static var previews: some View {
-        LivePreview(model: LiveCameraViewModel())
+        LivePreview(model: CameraViewModel())
     }
 }
 
