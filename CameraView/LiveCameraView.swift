@@ -7,13 +7,27 @@
 //
 
 import SwiftUI
-import AVKit
 import Vision
+import AVKit
+
+
+class LiveCameraViewModel: ObservableObject {
+    enum CaptureType {
+        case recordMovie, videoStreamForProcessing
+    }
+    
+    @Published var personInView: Bool = false
+    @Published var captureSessionType: CaptureType = .videoStreamForProcessing
+}
+
 
 struct LivePreview: UIViewRepresentable {
+    let model: LiveCameraViewModel
+    let peronInView: Bool = false
     
     func makeUIView(context: UIViewRepresentableContext<LivePreview>) -> LiveCameraView  {
         let liveView = LiveCameraView()
+        liveView.bridgeModel = self.model
         return liveView
     }
     
@@ -27,10 +41,10 @@ typealias ImageBufferHandler = ((_ imageBuffer: CMSampleBuffer) -> ())
 // TODO: Setup predict function in delegate
 /// Starts Camera Preview and looks for person in view
 /// This Camera Buffer is good for capturing frames using SwiftUI
-class LiveCameraView: UIView {
+class LiveCameraView: UIView, AVCaptureVideoDataOutputSampleBufferDelegate {
+    var bridgeModel: LiveCameraViewModel?
     private var captureSession: AVCaptureSession?
     private var videoConnection: AVCaptureConnection!
-    var recordingDelegate: AVCaptureVideoDataOutputSampleBufferDelegate!
     var imageBufferHandler: ImageBufferHandler?
     
     init() {
@@ -74,13 +88,11 @@ class LiveCameraView: UIView {
         // setup session
         let session = AVCaptureSession()
         session.beginConfiguration()
-        //alternate AVCaptureDevice.default(for: .video)
         guard let videoDevice = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                         for: .video, position: .front) else {
                                                             print("Built in Camera is not active") // TODO: Add Notification to user
                                                             return
         }
-        
         guard let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice), session.canAddInput(videoDeviceInput) else {
             print("No Camera Detected")
             return
@@ -110,7 +122,7 @@ class LiveCameraView: UIView {
     // Starts the preview
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        recordingDelegate = self
+//        recordingDelegate = self
         
         if let _ = self.superview {
             self.videoPreviewLayer.session = self.captureSession
@@ -121,85 +133,28 @@ class LiveCameraView: UIView {
             self.captureSession?.startRunning()
         }
     }
-}
-
-extension LiveCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
     // TODO: Stop Buffer once person is found
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("Capturing output")
-        
         if connection.videoOrientation != .portrait {
             connection.videoOrientation = .portrait
             return
         }
-        
+    
         if let imageBufferHandler = imageBufferHandler
         {
             imageBufferHandler(sampleBuffer)
+            
+//            DispatchQueue.main.async {
+//                self.bridgeModel?.personInView = true // << assign here as needed
+//            }
         }
     }
 }
 
 
-//struct LiveAnalysisView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LiveAnalysisView()
-//    }
-//}
-
-
-
-
-
-//UIKit
-
-struct CameraView : UIViewControllerRepresentable {
-    let model: BarCodeViewModel
-    let myBarcode: Int = 0
-    
-    
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<CameraView>) -> UIViewController {
-        let controller = BarCodeDetectorViewController()
-        controller.bridgeModel = self.model
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: CameraView.UIViewControllerType, context: UIViewControllerRepresentableContext<CameraView>) {}
-}
-
-class BarCodeDetectorViewController : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-    let session = AVCaptureSession()
-    var bridgeModel: BarCodeViewModel?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        startLiveVideo()
-    }
-    
-    func startLiveVideo() {
-        session.sessionPreset = AVCaptureSession.Preset.high
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        
-        let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
-        let deviceOutput = AVCaptureVideoDataOutput()
-        deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
-        
-        session.addInput(deviceInput)
-        session.addOutput(deviceOutput)
-        
-        let cameraPreview = AVCaptureVideoPreviewLayer(session: session)
-        
-        view.layer.addSublayer(cameraPreview)
-        cameraPreview.frame = view.frame
-        
-        session.startRunning()
-    }
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("Capturing output")
+struct LivePreview_Previews: PreviewProvider {
+    static var previews: some View {
+        LivePreview(model: LiveCameraViewModel())
     }
 }
+

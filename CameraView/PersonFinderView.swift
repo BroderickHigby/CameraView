@@ -1,5 +1,5 @@
 //
-//  FindPersonView.swift
+//  PersonFinderView.swift
 //  CameraView
 //
 //  Created by Broderick Higby on 9/12/20.
@@ -7,44 +7,24 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct PersonFinderView: View {
+    @ObservedObject var viewModel = LiveCameraViewModel()
     var body: some View {
-        LivePreview()
-    }
+        LivePreview(model: viewModel)
+            .edgesIgnoringSafeArea(.all)
+            .onReceive(viewModel.$personInView, perform: { detected in
+                if detected {
+                    self.viewModel.personInView = true
+                }
+            })
+    }// can call viewModel.personInView to check if the person is in view
 }
 
 struct PersonFinderView_Previews: PreviewProvider {
+    @State private var detection = true
     static var previews: some View {
-        ZStack{
-            Text("View")
-            PersonFinderView()
-        }
-    }
-}
-
-
-class BarCodeViewModel: ObservableObject {
-    @Published var cardNumber: String = ""
-}
-
-struct BarcodeView: View {
-    @ObservedObject var vm = BarCodeViewModel()
-    
-    @State var isShowingCameraView = false
-    
-    var body: some View {
-        VStack {
-            CameraView(model: vm)
-                .edgesIgnoringSafeArea(.all)
-            Text(vm.cardNumber)
-        }
-        
-    }
-}
-
-struct BarcodeView_Previews: PreviewProvider {
-    static var previews: some View {
-        BarcodeView()
+        PersonFinderView()
     }
 }

@@ -32,7 +32,6 @@ class RecordingState: ObservableObject {
 
 struct RecordSwingView: View {
     @ObservedObject var recordingState = RecordingState()
-    
     @State private var countdownTimer = 5
     @State private var golferInView = false
     @State private var recording = false
@@ -43,7 +42,7 @@ struct RecordSwingView: View {
     var body: some View {
         ZStack {
 //            VideoRecordingView(timeLeft: $countdownTimer, onComplete: $golferInView, recording: $recording)
-            LivePreview()
+            PersonFinderView()
                 .padding()
             //            Button(action: {
             //                self.showTimerText.toggle()
@@ -111,3 +110,7 @@ struct RecordSwingView_Previews: PreviewProvider {
         RecordSwingView()
     }
 }
+
+
+
+
